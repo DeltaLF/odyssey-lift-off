@@ -23,6 +23,18 @@ const resolvers = {
       return dataSources.trackAPI.getTrackModule(id);
     },
   },
+  Mutation: {
+    incrementTrackViews: async (_, { id }, { dataSources }) => {
+      const track = await dataSources.trackAPI.incrementTrackViews(id);
+      // there are some extra properties defined in schema
+      return {
+        code: 200,
+        success: true,
+        message: "increase successfully",
+        track,
+      };
+    },
+  },
 };
 
 module.exports = resolvers;
