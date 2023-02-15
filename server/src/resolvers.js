@@ -5,7 +5,7 @@ const resolvers = {
       // we can get access to trackAPI
       const { dataSources } = context;
       // if we add fetching author logic here, this resolver will be too coupled
-      return dataSources.trackAPI.getTracksFromHome();
+      return dataSources.trackAPI.getTracksForHome();
     },
   },
   Track: {
