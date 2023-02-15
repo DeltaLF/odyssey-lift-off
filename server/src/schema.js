@@ -4,7 +4,8 @@ const typeDefs = gql`
   " Schema definitions"
   type Query {
     "fields"
-    tracksForHome: [Track!]!
+    tracksForHome: [Track!]! # return Track array
+    track(id: ID!): Track # return one Track
   }
 
   type Track {
@@ -14,6 +15,9 @@ const typeDefs = gql`
     thumbnail: String
     length: Int
     modulesCount: Int
+    description: String
+    numberOfViews: Int
+    modules: [Module!]!
   }
 
   type Author {
@@ -21,6 +25,12 @@ const typeDefs = gql`
     id: ID!
     name: String!
     photo: String
+  }
+
+  type Module {
+    id: ID!
+    title: String!
+    length: Int
   }
 `;
 module.exports = typeDefs;
