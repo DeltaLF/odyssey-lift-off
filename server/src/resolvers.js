@@ -25,14 +25,24 @@ const resolvers = {
   },
   Mutation: {
     incrementTrackViews: async (_, { id }, { dataSources }) => {
-      const track = await dataSources.trackAPI.incrementTrackViews(id);
-      // there are some extra properties defined in schema
-      return {
-        code: 200,
-        success: true,
-        message: "increase successfully",
-        track,
-      };
+      try {
+        const track = await dataSources.trackAPI.incrementTrackViews(id);
+        // there are some extra properties defined in schema
+        return {
+          code: 200,
+          success: true,
+          message: "increase successfully",
+          track,
+        };
+      } catch (error) {
+        const { response } = error.extensions;
+        return {
+          code: response.status,
+          success: false,
+          message: response.body,
+          track: null,
+        };
+      }
     },
   },
 };
