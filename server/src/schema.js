@@ -6,6 +6,7 @@ const typeDefs = gql`
     "fields"
     tracksForHome: [Track!]! # return Track array
     track(id: ID!): Track # return one Track
+    module(id: ID!): Module # return one module
   }
 
   type Track {
@@ -31,6 +32,11 @@ const typeDefs = gql`
     id: ID!
     title: String!
     length: Int
+    trackId: ID
+    authorId: ID
+    topic: String
+    content: String
+    videoUrl: String
   }
 
   " Mutation: "
